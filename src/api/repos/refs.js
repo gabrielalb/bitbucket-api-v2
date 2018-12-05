@@ -35,6 +35,26 @@ function createApi(api, opts = {}) {
         result.$createListener(callback)
       )
     }
+    
+    getBranches(username, repoSlug, callback) {
+      validateArgs('getBranches', arguments, 2)
+      const uri = buildUri(username, repoSlug, 'refs/branches')
+      api.get(
+        uri,
+        null, null,
+        result.$createListener(callback)
+      )
+    }
+  
+    getTags(username, repoSlug, callback) {
+      validateArgs('getTags', arguments, 2)
+      const uri = buildUri(username, repoSlug, 'refs/tags')
+      api.get(
+        uri,
+        null, null,
+        result.$createListener(callback)
+      )
+    }
   }
 
   localApi.promised = createPromisedApi(localApi, opts)
@@ -44,6 +64,8 @@ function createApi(api, opts = {}) {
 module.exports = {
   createApi,
   methods: [
-    'getAll'
+    'getAll',
+    'getBranches',
+    'getTags'
   ]
 }

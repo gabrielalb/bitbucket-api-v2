@@ -36,22 +36,32 @@ function createApi(api, opts = {}) {
       )
     },
     
-    getBranches(username, repoSlug, callback) {
-      validateArgs('getBranches', arguments, 2)
+    getBranches(username, repoSlug, page, callback) {
+      //validateArgs('getBranches', arguments, 3)
       const uri = buildUri(username, repoSlug, 'refs/branches')
+	  let opts = null
+	  if (page)
+		  opts = { pagelen: 100, page: page }
+	  else
+		  opts = { pagelen: 100 }
       api.get(
         uri,
-        null, null,
+        opts, null,
         result.$createListener(callback)
       )
     },
   
-    getTags(username, repoSlug, callback) {
-      validateArgs('getTags', arguments, 2)
+    getTags(username, repoSlug, page, callback) {
+      //validateArgs('getTags', arguments, 3)
       const uri = buildUri(username, repoSlug, 'refs/tags')
+	  let opts = null
+	  if (page)
+		  opts = { pagelen: 100, page: page }
+	  else
+		  opts = { pagelen: 100 }
       api.get(
         uri,
-        null, null,
+        opts, null,
         result.$createListener(callback)
       )
     }

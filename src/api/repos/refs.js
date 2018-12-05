@@ -34,7 +34,7 @@ function createApi(api, opts = {}) {
         null, null,
         result.$createListener(callback)
       )
-    }
+    },
     
     getBranches(username, repoSlug, callback) {
       validateArgs('getBranches', arguments, 2)
@@ -44,7 +44,7 @@ function createApi(api, opts = {}) {
         null, null,
         result.$createListener(callback)
       )
-    }
+    },
   
     getTags(username, repoSlug, callback) {
       validateArgs('getTags', arguments, 2)
